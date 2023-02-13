@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="com.seda.data-2.0" default="makejar" basedir=".">
+  <property name="builder" value="Seda spa - Gruppo KGS" />
+  <property name="jar.version" value="2.0" />
+  <property name="jar.name" value="com.seda.data" />
+  <property name="jar.name.complete" value="${jar.name}-${jar.version}.jar" />
+  <property name="jar.path" location="${user.home}\Desktop\Exported" />
+  <property name="jar.path.complete" value="${jar.path}\${jar.name.complete}" />
+
+  <property name="wasce.home" value="D:/Program Files/IBM/WebSphere/AppServerCommunityEdition"/>
+  <property name="wasce.repository" value="${wasce.home}/repository/com/seda/com.seda.data/2.0"/>
+
+  <property name="bap_jars" value="D:/BAP-2.0/jars"/>	
+	
+  <tstamp>
+	  <format property="timestamp.isoformat"
+	    pattern="yyyy-mm-dd'T'HH:mm:ss" locale="it"/>
+  </tstamp>	
+	
+  <target name="init">
+	<mkdir dir="${jar.path}"/>
+  </target>
+	
+  <target name ="makejar" depends="init" description="Create the jar file for the SEDA data access adapter">
+  	<jar jarfile="${jar.path.complete}" basedir="bin">
+  		<manifest>
+	  	    <attribute name="Built-By" value="${builder}"/>
+	  	    <attribute name="Sealed" value="true"/>
+	  	    <attribute name="Built-On" value="${timestamp.isoformat}"/>
+
+			<section name="Shared">
+	  		    <attribute name="Title" value="SEDA Gruppo KGS - data access adapter"/>
+	  		    <attribute name="Vendor" value="${builder}"/>
+	  		</section>
+	  		
+	  		<section name="Copyright">
+	  		     <attribute name="Copy" value="(C) ${builder} - 2012"/>
+	  		</section>
+
+	  	</manifest>  
+  	</jar>
+  </target>
+	
+  <target name ="copyjar" depends="makejar" description="Copy the jar file to the resources store">
+  		<copy todir="${wasce.repository}" file="${jar.path.complete}"/>
+  	    <copy todir="${bap_jars}" file="${jar.path.complete}"/>
+  </target>
+
+</project>

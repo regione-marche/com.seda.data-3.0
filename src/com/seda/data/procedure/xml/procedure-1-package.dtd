@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!ELEMENT package (columnMap* | procedure*)+>
+<!ATTLIST package
+collection CDATA #IMPLIED
+>
+
+<!ELEMENT columnMap (constructor?,column*,link*,list*)>
+<!ATTLIST columnMap
+id CDATA #REQUIRED
+type CDATA #REQUIRED
+extends CDATA #IMPLIED
+>
+
+<!ELEMENT constructor (arg*)>
+
+<!ELEMENT column EMPTY>
+<!ATTLIST column
+property CDATA #IMPLIED
+javaType CDATA #IMPLIED
+name CDATA #IMPLIED
+jdbcType CDATA #IMPLIED
+key (true|false) "false"
+extra (true|false) "false"
+boolexp CDATA #IMPLIED
+>
+
+<!ELEMENT arg EMPTY>
+<!ATTLIST arg
+javaType CDATA #IMPLIED
+column CDATA #IMPLIED
+jdbcType CDATA #IMPLIED
+key (true|false) "false"
+>
+
+<!ELEMENT list (constructor?, link*,list*)>
+<!ATTLIST list
+property CDATA #REQUIRED
+name CDATA #IMPLIED
+call CDATA #IMPLIED
+columnMap CDATA #IMPLIED
+extra (true|false) "false"
+parameter CDATA #IMPLIED
+>
+
+<!ELEMENT link (constructor?,link*,list*,parameter*)>
+<!ATTLIST link
+property CDATA #REQUIRED
+name CDATA #IMPLIED
+call CDATA #IMPLIED
+columnMap CDATA #IMPLIED
+extra (true|false) "false"
+parameter CDATA #IMPLIED
+>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+name CDATA #REQUIRED
+value CDATA #REQUIRED
+>
+
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter
+name CDATA #REQUIRED
+column CDATA #IMPLIED
+property CDATA #REQUIRED
+boolexp CDATA #IMPLIED
+extra (true|false) "false"
+>
+
+<!ELEMENT procedure (parameter*)>
+<!ATTLIST procedure
+id CDATA #REQUIRED
+name CDATA #IMPLIED
+parameterType CDATA #IMPLIED
+columnMap CDATA #IMPLIED
+resultType CDATA #IMPLIED
+fetchSize CDATA #IMPLIED
+timeout CDATA #IMPLIED
+>

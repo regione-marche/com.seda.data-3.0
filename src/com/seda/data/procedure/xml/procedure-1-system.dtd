@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!ELEMENT system (properties?, settings?, aliases?, plans?, packages?)>
+
+<!ELEMENT properties (property*)>
+<!ATTLIST properties
+resource CDATA #IMPLIED
+url CDATA #IMPLIED
+>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+name CDATA #REQUIRED
+value CDATA #REQUIRED
+>
+
+<!ELEMENT settings (setting+)>
+
+<!ELEMENT setting EMPTY>
+<!ATTLIST setting
+name CDATA #REQUIRED
+value CDATA #REQUIRED
+>
+
+<!ELEMENT aliases (alias+)>
+
+<!ELEMENT alias EMPTY>
+<!ATTLIST alias
+type CDATA #REQUIRED
+name CDATA #IMPLIED
+>
+
+<!ELEMENT plans (plan+)>
+<!ATTLIST plans
+default CDATA #REQUIRED
+>
+
+<!ELEMENT plan (dataSource)>
+<!ATTLIST plan
+id CDATA #REQUIRED
+>
+<!ELEMENT dataSource (property*)>
+<!ATTLIST dataSource
+type (pool|direct|jndi) "direct"
+>
+
+<!ELEMENT packages (package+)>
+
+<!ELEMENT package EMPTY>
+<!ATTLIST package
+resource CDATA #IMPLIED
+url CDATA #IMPLIED
+>

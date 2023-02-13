@@ -1,0 +1,2 @@
+creare una class HelperCallSatement per mantenere i callablestatement preparati in modo da riusarli.
+Devono appoggirasi all'attuale Helper per mantenere la collezione di parametri
