@@ -2,8 +2,9 @@ package com.seda.data.procedure.result;
 
 import javax.sql.DataSource;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
+import com.seda.data.dao.DAOSupportExtended;
 import com.seda.data.logger.ConnectionLogger;
 import com.seda.data.procedure.SubSystem;
 import com.seda.data.procedure.Plan;
@@ -22,7 +23,7 @@ import java.util.Set;
 
 public class ResultLoader {
 
-	private static final Log log = LogFactory.getLog(Connection.class);
+	private static final LoggerWrapper log =  CustomLoggerManager.get(ResultLoader.class);
 
 	protected final SubSystem system;
 	protected final Executor executor;

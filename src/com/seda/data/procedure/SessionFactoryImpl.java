@@ -6,10 +6,11 @@ package com.seda.data.procedure;
 
 import javax.sql.DataSource;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.data.logger.ConnectionLogger;
 import com.seda.data.procedure.executor.Executor;
+import com.seda.data.procedure.result.ResultLoader;
 import com.seda.data.procedure.transaction.Transaction;
 import com.seda.data.procedure.transaction.TransactionFactory;
 import com.seda.data.procedure.transaction.TransactionFactoryImpl;
@@ -23,7 +24,7 @@ import java.sql.SQLException;
  */
 public class SessionFactoryImpl implements SessionFactory {
 
-	private static final Log log = LogFactory.getLog(Connection.class);
+	private static final LoggerWrapper log =  CustomLoggerManager.get(SessionFactoryImpl.class);
 
 	private final SubSystem system;
 	private final TransactionFactory transactionFactory;

@@ -10,8 +10,7 @@ import java.sql.SQLWarning;
 import java.sql.Statement;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.data.helper.HelperException;
 import com.seda.data.helper.SpParamCache;
 
@@ -133,7 +132,7 @@ public final class Helper {
 			x=x.getNextException();
 		}
 	}	
-	public synchronized static final void showSQLException(SQLException x, Logger logger) {
+	public synchronized static final void showSQLException(SQLException x, LoggerWrapper logger) {
 		while (x!=null) {
 			logger.error(Messages.SQLE_MESSAGE.format(x.getMessage()));
 			logger.error(Messages.SQLE_SQLSTATE.format(x.getSQLState()));
@@ -165,7 +164,7 @@ public final class Helper {
 			w=w.getNextWarning();
 		}		
 	}		
-	public synchronized static final void showSQLWarnings(SQLWarning w, Logger logger) {
+	public synchronized static final void showSQLWarnings(SQLWarning w, LoggerWrapper logger) {
 		while (w!=null) {
 			logger.warn(Messages.SQLW_MESSAGE.format(w.getMessage()));
 			logger.warn(Messages.SQLW_SQLSTATE.format(w.getSQLState()));

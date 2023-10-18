@@ -6,16 +6,17 @@ import java.lang.reflect.Proxy;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.reflection.ExceptionUtil;
+import com.seda.data.procedure.SessionFactoryImpl;
 
 /**
  * Statement proxy to add logging
  */
 public class StatementLogger extends JdbcLogger implements InvocationHandler {
 
-	private static final Log log = LogFactory.getLog(Statement.class);
+	private static final LoggerWrapper log =  CustomLoggerManager.get(StatementLogger.class);
 
 	private Statement statement;
 

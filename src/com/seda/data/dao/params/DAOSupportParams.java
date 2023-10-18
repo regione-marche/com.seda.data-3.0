@@ -3,8 +3,8 @@
  */
 package com.seda.data.dao.params;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.params.DefaultParameters;
 import com.seda.commons.params.ParametersFactory;
 
@@ -15,7 +15,7 @@ import com.seda.commons.params.ParametersFactory;
 public class DAOSupportParams extends DefaultParameters {
 
 	/** Log object for this class. */
-    private static final Log LOG = LogFactory.getLog(DAOSupportParams.class);
+	private static final LoggerWrapper LOG =  CustomLoggerManager.get(DAOSupportParams.class);
 
     /** Parameters class factory. */
     protected static ParametersFactory paramsFactory = new DAOSupportParamsFactory();    

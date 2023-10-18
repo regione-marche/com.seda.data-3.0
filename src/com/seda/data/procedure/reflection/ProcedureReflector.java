@@ -14,8 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
+import com.seda.data.logger.StatementLogger;
 import com.seda.data.procedure.parameter.ParameterDirection;
 import com.seda.data.procedure.transaction.Transaction;
 import com.seda.data.type.JdbcType;
@@ -26,7 +27,7 @@ import com.seda.data.type.JdbcType;
  */
 public class ProcedureReflector {
 
-	private static final Log log = LogFactory.getLog(Connection.class);	
+	private static final LoggerWrapper log =  CustomLoggerManager.get(ProcedureReflector.class);
 
 	private static final Object _locker = new Object();
 	

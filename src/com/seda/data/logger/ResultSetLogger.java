@@ -6,8 +6,8 @@ import java.lang.reflect.Proxy;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.reflection.ExceptionUtil;
 import com.seda.data.export.ExportHandler;
 /**
@@ -15,7 +15,7 @@ import com.seda.data.export.ExportHandler;
  */
 public class ResultSetLogger extends JdbcLogger implements InvocationHandler {
 
-	private static final Log log = LogFactory.getLog(ResultSet.class);
+	private static final LoggerWrapper log =  CustomLoggerManager.get(ResultSetLogger.class);
 
 	boolean first = true;
 	private ExportHandler exportHandler;
@@ -32,17 +32,17 @@ public class ResultSetLogger extends JdbcLogger implements InvocationHandler {
 			if ("next".equals(method.getName())) {
 				boolean hasNext = (Boolean) o; 
 				if (hasNext) {
-					if (log.isDebugEnabled()) {
-						if (first) {
-							first = false;
-							exportHandler = new ResultSetExport();
-							exportHandler.setCharacterDelimiter(',');
-							printColumnHeaders(exportHandler.open(resultSet, true, false));
-						}
-						printColumnValues(exportHandler.fetch(hasNext));
+if (log.isDebugEnabled()) {
+					if (first) {
+						first = false;
+						exportHandler = new ResultSetExport();
+						exportHandler.setCharacterDelimiter(',');
+						printColumnHeaders(exportHandler.open(resultSet, true, false));
 					}
+					printColumnValues(exportHandler.fetch(hasNext));
 				}
 			}
+}
 			return o;
 		} catch (Throwable t) {
 			throw ExceptionUtil.unwrapThrowable(t);
