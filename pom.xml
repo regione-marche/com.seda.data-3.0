@@ -12,7 +12,7 @@
    <parent>
       <groupId>it.maggioli.informatica.base.pom</groupId>
       <artifactId>pagonet-base</artifactId>
-      <version>1.1</version>
+      <version>1.2.0</version>
       <relativePath/>
    </parent>
 	
@@ -37,40 +37,29 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>servlet-api</artifactId>
-		    <version>2.5</version>
-		    <scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>v10.1fp2_jdbc_sqlj</groupId>
 			<artifactId>db2jcc_license_cu</artifactId>
-			<version>10.0</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>v10.1fp2_jdbc_sqlj</groupId>
 			<artifactId>db2jcc_license_cisuz</artifactId>
-			<version>10.0</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>v10.1fp2_jdbc_sqlj</groupId>
 			<artifactId>db2jcc</artifactId>
-			<version>10.0</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 		    <groupId>v10.1fp2_jdbc_sqlj</groupId>
 		    <artifactId>db2jcc4</artifactId>
-		    <version>10.0</version>
-		    <scope>compile</scope>
 		</dependency>
 		
 	</dependencies>
