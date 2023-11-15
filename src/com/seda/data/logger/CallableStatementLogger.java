@@ -7,15 +7,15 @@ import java.sql.CallableStatement;
 
 import java.sql.ResultSet;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.reflection.ExceptionUtil;
 /**
  * PreparedStatement proxy to add logging
  */
 public class CallableStatementLogger extends JdbcLogger implements InvocationHandler {
 
-	private static final Log log = LogFactory.getLog(CallableStatement.class);
+	private static final LoggerWrapper log =  CustomLoggerManager.get(CallableStatementLogger.class);
 
 	private CallableStatement statement;
 	private String sql;
@@ -28,10 +28,10 @@ public class CallableStatementLogger extends JdbcLogger implements InvocationHan
 	public Object invoke(Object proxy, Method method, Object[] params) throws Throwable {
 		try {
 			if (EXECUTE_METHODS.contains(method.getName())) {
-				if (log.isDebugEnabled()) {
-					log.debug("==>  Executing: " + removeExcessiveBlank(sql));
-					log.debug("==> Parameters: " + getParameterValueString());
-				}
+if (log.isDebugEnabled()) {
+				log.debug("==>  Executing: " + removeExcessiveBlank(sql));
+				log.debug("==> Parameters: " + getParameterValueString());
+}
 				clearColumnInfo();
 				if ("executeQuery".equals(method.getName())) {
 					ResultSet rs = (ResultSet) method.invoke(statement, params);

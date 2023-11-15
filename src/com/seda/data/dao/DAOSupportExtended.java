@@ -9,8 +9,8 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.data.dao.params.DAOSupportParams;
 import com.seda.data.datasource.DataSourceException;
 import com.seda.data.datasource.DataSourceFactoryImpl;
@@ -27,7 +27,9 @@ import com.seda.data.event.servlet.DAOEventLocal;
  */
 public class DAOSupportExtended {
 	
-	private static final Log logger = LogFactory.getLog(DAOSupportExtended.class);
+	private static final LoggerWrapper logger =  CustomLoggerManager.get(DAOSupportExtended.class);
+
+
 	private DAOSupportParams params = new DAOSupportParams();
 	private DataSource dataSource;
 	private String schema;

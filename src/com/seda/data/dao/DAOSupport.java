@@ -9,18 +9,19 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.data.datasource.DataSourceException;
+import com.seda.data.logger.CallableStatementLogger;
 
 /**
  * This class gives the support to a DAO bean
  * @author Seda Lab
- * @deprecated Questa classe e' deprecata usare com.seda.data.dao.DAOSupportExtended, non sarà più inserita nelle prossime release
+ * @deprecated Questa classe e' deprecata usare com.seda.data.dao.DAOSupportExtended, non sarï¿½ piï¿½ inserita nelle prossime release
  */
 public class DAOSupport {
 
-	private static final Log logger = LogFactory.getLog(DAOSupport.class);
+	private static final LoggerWrapper logger =  CustomLoggerManager.get(DAOSupport.class);
 	
 	private DataSource dataSource;
 	private Connection  connection;

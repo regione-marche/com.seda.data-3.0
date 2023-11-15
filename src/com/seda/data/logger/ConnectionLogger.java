@@ -8,25 +8,27 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.cache.impl.LoggingCache;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.reflection.ExceptionUtil;
 /**
  * Connection proxy to add logging
  */
 public class ConnectionLogger extends JdbcLogger implements InvocationHandler {
 
-	private static final Log log = LogFactory.getLog(Connection.class);
+	private static final LoggerWrapper log =  CustomLoggerManager.get(ConnectionLogger.class);
+
 
 	private Connection connection;
 
 	private ConnectionLogger(Connection conn) {
 		super();
 		this.connection = conn;
-		if (log.isDebugEnabled()) {
-			log.debug("ooo Connection Opened");
-		}
+if (log.isDebugEnabled()) {
+		log.debug("ooo Connection Opened");
 	}
+}
 
 	public Object invoke(Object proxy, Method method, Object[] params) throws Throwable {
 		try {
@@ -43,9 +45,9 @@ public class ConnectionLogger extends JdbcLogger implements InvocationHandler {
 				stmt = StatementLogger.newInstance(stmt);
 				return stmt;
 			} else if ("close".equals(method.getName())) {
-				if (log.isDebugEnabled()) {
-					log.debug("xxx Connection Closed");
-				}
+if (log.isDebugEnabled()) {
+				log.debug("xxx Connection Closed");
+}
 				return method.invoke(connection, params);
 			} else {
 				return method.invoke(connection, params);

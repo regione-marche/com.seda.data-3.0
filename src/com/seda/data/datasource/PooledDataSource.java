@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.management.annotations.Description;
 import com.seda.commons.management.annotations.ManagedAttribute;
 import com.seda.commons.management.annotations.ManagedOperation;
@@ -26,13 +26,14 @@ import com.seda.data.event.DAOEventHandler;
 import com.seda.data.event.DAOEventProxy;
 import com.seda.data.event.servlet.DAOEventContext;
 import com.seda.data.event.servlet.DAOEventLocal;
+import com.seda.data.logger.StatementLogger;
 /**
  * @author f.ricci
  *
  */
 public class PooledDataSource implements DataSource {
 
-	private static final Log logger = LogFactory.getLog(PooledDataSource.class);
+	private static final LoggerWrapper logger =  CustomLoggerManager.get(PooledDataSource.class);
 
 	private final DataSourceMonitor monitor = new DataSourceMonitor(this);
 

@@ -13,10 +13,11 @@ import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 
-import com.seda.commons.logging.Log;
-import com.seda.commons.logging.LogFactory;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.reflection.ExceptionUtil;
 import com.seda.data.dao.DAOHelper;
+import com.seda.data.logger.ConnectionLogger;
 import com.seda.data.logger.JdbcLogger;
 import com.seda.data.procedure.reflection.MetaProcedure;
 import com.seda.data.procedure.reflection.ProcedureParameter;
@@ -27,7 +28,7 @@ import com.seda.data.procedure.reflection.ProcedureParameter;
  */
 public class CallableStatementWrapper extends JdbcLogger implements InvocationHandler {
 
-	private static final Log log = LogFactory.getLog(CallableStatement.class);
+	private static final LoggerWrapper log =  CustomLoggerManager.get(CallableStatementWrapper.class);
 
 	private CallableStatement callableStatement;
 	private MetaProcedure metaProcedure;
